@@ -1,13 +1,13 @@
 import { Component, computed, inject, signal, resource } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { User } from '@models/user';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-new-experimental-apis',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './new-experimental-apis.component.html',
   styleUrl: './new-experimental-apis.component.sass'
 })
