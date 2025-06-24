@@ -1,0 +1,33 @@
+<h2 align="center">new-experimental-apis works!</h2>
+
+<ng-content>
+    <header>
+        <h1>Ejemplo de Angular 20: Signals + RxJS Interop</h1>
+        <p>Consumir una API REST con manejo de estado reactivo usando <code>resource</code>.</p>
+    </header>
+
+    <section class="user-selector">
+        <label for="user-select">Seleccionar Usuario:</label>
+        <select id="user-select" (change)="changeUser($event)">
+        <option value="1">Usuario 1</option>
+        <option value="2">Usuario 2</option>
+        <option value="3">Usuario 3</option>
+        <option value="4">Usuario 4</option>
+        <option value="5">Usuario 5</option>
+        </select>
+    </section>
+
+    <section class="content">
+        @if (user(); as currentUser) {
+        <div class="user-grid">
+            <article class="user-card">
+                <h3>Name: {{ currentUser.name }}</h3>
+                <p>Email: {{ currentUser.email }}</p>
+                <span>Username: {{ currentUser.username }}</span>
+            </article>
+        </div>
+        } @else {
+        <div class="loading">Cargando usuario...</div>
+        }
+    </section>
+</ng-content>
