@@ -2,12 +2,13 @@ import { Component, computed, inject, signal, resource } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { User } from '@models/user';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { lastValueFrom } from 'rxjs';
+import { catchError, lastValueFrom } from 'rxjs';
+import { ResourceComponent } from './components/resource/resource.component';
 
 @Component({
   selector: 'app-new-experimental-apis',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, ResourceComponent],
   templateUrl: './new-experimental-apis.component.html',
   styleUrl: './new-experimental-apis.component.sass'
 })
@@ -26,7 +27,12 @@ export class NewExperimentalApisComponent {
     // Recibe los `params` y un `abortSignal` para cancelar peticiones.
     loader: ({ params }): Promise<User> => {
       // Convertimos el Observable de HttpClient a una Promise, que es lo que `resource` espera.
-      return lastValueFrom(this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${params.id}`));
+      return lastValueFrom(this.http.get<User>(`https://jsonplaceholder.typicode.com/users/${params.id}`).pipe(
+        catchError(err => {
+          // Lanza siempre una instancia de Error
+          throw new Error(typeof err === 'string' ? err : JSON.stringify(err));
+        })
+      ));
     }
   });
 
