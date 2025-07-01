@@ -10,7 +10,7 @@ import { User } from '@models/user';
   styleUrls: ['./resource.component.sass']
 })
 export class ResourceComponent {
-  userId = getUserId();
+  userId: Signal<string> = getUserId();
 
   userResource = resource <User, { id: string }>({
     params: () => ({ id: this.userId() }),
@@ -50,7 +50,7 @@ export class ResourceComponent {
         console.log('Datos del usuario:', user);
       }
       if (listUsers) {
-        console.log('Lista de usuarios:', listUsers);
+        console.log('Lista de usuarios:', listUsers.length);
       }
     });
   }
