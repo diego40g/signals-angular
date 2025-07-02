@@ -1,1 +1,18 @@
-<p>http-resource works!</p>
+<div class="http-resource-container">
+  <h2>HTTP Resource Example</h2>
+  
+  <div class="user-controls">
+    <button (click)="changeUserId(1)">Usuario 1</button>
+    <button (click)="changeUserId(2)">Usuario 2</button>
+    <button (click)="changeUserId(-1)">Usuario 3</button>
+  </div>
+
+  <div class="user-data">
+    <h3>Estado del Resource:</h3>
+    <p><strong>Loading:</strong> {{ userResource.isLoading() }}</p>
+    <p><strong>Error:</strong> {{ userResource.error() | json }}</p>
+    
+    <h3>Datos del Usuario:</h3>
+    <pre>{{ userResource.value() | json }}</pre>
+  </div>
+</div>
