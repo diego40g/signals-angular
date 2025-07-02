@@ -47,10 +47,10 @@ export class ResourceComponent {
       //console.log('isLoading:', this.userResource.isLoading());
       
       if (user) {
-        console.log('Datos del usuario:', user);
+        // console.log('Datos del usuario:', user);
       }
       if (listUsers) {
-        console.log('Lista de usuarios:', listUsers.length);
+        // console.log('Lista de usuarios:', listUsers.length);
       }
     });
   }
