@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, resource, signal, computed, effect, Signal, ResourceStreamItem, inject, Injector } from '@angular/core';
+import { Component, OnDestroy, OnInit, resource, signal, computed, effect, Signal, ResourceStreamItem, inject, Injector, runInInjectionContext } from '@angular/core';
 import { WebSocketMessage } from '../../models/web-socket-message';
 import { CommonModule } from '@angular/common';
 import { io, Socket } from 'socket.io-client';
@@ -38,11 +38,13 @@ export class DataStreamComponent implements OnInit, OnDestroy {
         updateResource();
 
         // Configurar el efecto para actualizaciones futuras
-        const effectRef = effect(() => {
-          const messages = this.messageSignal();
-          resourceResult.set({ value: messages });
+        const effectRef = runInInjectionContext(this.injector, () => {
+          return effect(() => {
+            const messages = this.messageSignal();
+            resourceResult.set({ value: messages });
+          });
         });
-
+        
         resolve(resourceResult);
       });
     },
