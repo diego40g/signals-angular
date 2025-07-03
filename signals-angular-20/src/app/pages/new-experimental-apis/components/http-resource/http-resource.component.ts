@@ -1,7 +1,7 @@
 import { JsonPipe } from '@angular/common';
 import { httpResource } from '@angular/common/http';
 import { Component, signal } from '@angular/core';
-import { User } from '@app/models/user';
+import { User } from '@models/user';
 
 @Component({
   selector: 'app-http-resource',
