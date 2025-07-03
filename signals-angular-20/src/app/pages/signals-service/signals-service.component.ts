@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, inject, signal, Signal } from '@angular/core';
-import { UserService } from '@services/user.service';
+import { UserService } from '@app/pages/signals-service/services/user.service';
 import { User } from '@models/user';
 
 @Component({
