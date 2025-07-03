@@ -22,6 +22,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/deprecation-ngif-ngfor-ngswitch/deprecation-ngif-ngfor-ngswitch.component').then(c => c.DeprecationNgifNgforNgswitchComponent)
     },
     {
+        path: 'services-signals',
+        loadComponent: () => import('./pages/signals-service/signals-service.component').then(c => c.SignalsServiceComponent)
+    },
+    {
         path: '',
         redirectTo: 'new-experimental-apis',
         pathMatch: 'full'
