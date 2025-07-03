@@ -1,0 +1,35 @@
+<ng-content>
+    <header>
+    <h1>Ejemplo de Angular 20: Signals + Manejo de estados</h1>
+    <p>Consumir una API REST con manejo de estado reactivo.</p>
+  </header>
+
+  <section class="search-box">
+    <label for="search">Filtrar usuarios por nombre:</label>
+    <input 
+      id="search"  
+      type="text"
+      placeholder="Escribe un nombre..."
+      [value]="searchTerm()"
+      (input)="onSearch($event)"
+    />
+  </section>
+
+  <section class="content">
+    @if (users() === undefined) {
+      <div class="loading">Cargando usuarios...</div>
+    } @else {
+      <div class="user-grid">
+        @for (user of filteredUsers(); track user.id) {
+          <article class="user-card">
+            <h3>Name: {{ user.name }}</h3>
+            <p>Email: {{ user.email }}</p>
+            <span>Username: {{ user.username }}</span>
+          </article>
+        } @empty {
+          <p class="empty-state">No se encontraron usuarios que coincidan con la busqueda.</p>
+        }
+      </div>
+    }
+  </section>
+</ng-content>

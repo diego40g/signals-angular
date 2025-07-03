@@ -1,0 +1,98 @@
+.experimental-apis-container
+  max-width: 1200px
+  margin: 0 auto
+  padding: 20px
+
+.component-menu
+  margin-bottom: 30px
+  
+  .menu-header
+    margin-bottom: 20px
+    
+    h3
+      color: #333
+      font-size: 1.2rem
+      margin: 0
+
+.menu-options
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+  gap: 16px
+  margin-bottom: 20px
+
+.menu-button
+  background: white
+  border: 2px solid #e1e5e9
+  border-radius: 8px
+  padding: 16px
+  cursor: pointer
+  transition: all 0.3s ease
+  text-align: left
+  
+  &:hover
+    border-color: #007acc
+    box-shadow: 0 4px 12px rgba(0, 122, 204, 0.15)
+    transform: translateY(-2px)
+  
+  &.active
+    border-color: #007acc
+    background-color: #f0f8ff
+    box-shadow: 0 4px 12px rgba(0, 122, 204, 0.2)
+    
+    .label
+      color: #007acc
+      font-weight: 600
+
+.button-content
+  .button-header
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 8px
+    
+  .label
+    font-size: 1.1rem
+    font-weight: 500
+    color: #333
+    transition: color 0.3s ease
+    
+  .badge
+    font-size: 0.75rem
+    font-weight: 600
+    padding: 4px 8px
+    border-radius: 12px
+    text-transform: uppercase
+    letter-spacing: 0.5px
+    
+    &[data-type="basic"]
+      background-color: #e3f2fd
+      color: #1976d2
+      
+    &[data-type="stream"]
+      background-color: #f3e5f5
+      color: #7b1fa2
+      
+    &[data-type="http"]
+      background-color: #e8f5e8
+      color: #2e7d32
+      
+  .description
+    margin: 0
+    font-size: 0.9rem
+    color: #666
+    line-height: 1.4
+
+.component-container
+  background: white
+  border-radius: 8px
+  padding: 24px
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
+  border: 1px solid #e1e5e9
+
+// Responsive design
+@media (max-width: 768px)
+  .menu-options
+    grid-template-columns: 1fr
+    
+  .component-container
+    padding: 16px

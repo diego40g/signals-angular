@@ -1,0 +1,44 @@
+<ng-content>
+    <h2 align="center">New Experimental APIs</h2>
+
+    <!-- Menú de navegación -->
+    <nav class="component-menu">
+        <div class="menu-header">
+            <h3>Selecciona un ejemplo:</h3>
+        </div>
+        
+        <div class="menu-options">
+        @for (option of menuOptions; track option.key) {
+            <button 
+            class="menu-button"
+            [class.active]="activeComponent() === option.key"
+            (click)="selectComponent(option.key)">
+            <div class="button-content">
+                <div class="button-header">
+                <span class="label">{{ option.label }}</span>
+                <span class="badge" [attr.data-type]="option.badge.toLowerCase()">
+                    {{ option.badge }}
+                </span>
+                </div>
+                <p class="description">{{ option.description }}</p>
+            </div>
+            </button>
+        }
+        </div>
+    </nav>
+
+    <!-- Contenedor del componente activo -->
+    <div class="component-container">
+        @switch (activeComponent()) {
+        @case ('resource') {
+            <app-resource></app-resource>
+        }
+        @case ('data-stream') {
+            <app-data-stream></app-data-stream>
+        }
+        @case ('http-resource') {
+            <app-http-resource></app-http-resource>
+        }
+        }
+    </div>
+</ng-content>

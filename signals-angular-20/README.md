@@ -1,3 +1,11 @@
+https://www.youtube.com/watch?v=X3mXJ5GJybY
+
+https://angular.dev/roadmap
+
+https://blog.angular.dev/announcing-angular-v20-b5c9c06cf301
+
+https://www.youtube.com/watch?v=KaVufhifOmA&list=PLD4CDC34D7sMfVxx037MsX3_IbZ_0mFwA
+https://github.com/prophet-99/angular-elementary
 # SignalsAngular20
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.2.

@@ -1,0 +1,29 @@
+<ng-content>
+    <h3>Usuario</h3>
+    @if (userResource.isLoading()) {
+        <p>Cargando usuario...</p>
+    } @else if (userResource.error()) {
+        <p>Error al cargar usuario: {{ userResource.error()?.message }}</p>
+    } @else {
+        <div class="user">
+            @if (userResource.value()) {
+            <h3>{{ userResource.value()?.name }}</h3>
+            <p>Email: {{ userResource.value()?.email }}</p>
+            }
+        </div>
+    }
+
+    <h3>Lista</h3>
+    @if (listUsersResource.isLoading()) {
+    <p>Cargando usuarios...</p>
+    } @else if (listUsersResource.error()) {
+    <p>Error al cargar usuarios: {{ listUsersResource.error()?.message }}</p>
+    } @else {
+    <div class="user">
+        @for (user of listUsersResource.value(); track user.id) {
+            <h3>{{ user.name }}</h3>
+            <p>Email: {{ user.email }}</p>
+        }
+    </div>
+    }
+</ng-content>

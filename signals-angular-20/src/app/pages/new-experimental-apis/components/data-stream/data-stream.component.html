@@ -1,0 +1,93 @@
+<ng-content>
+    <div class="websocket-container">
+        <header class="websocket-header">
+            <h3>WebSocket Data Stream</h3>
+            <div class="connection-status">
+                <span class="status-indicator" 
+                      [class.connected]="isConnected()"
+                      [class.connecting]="isConnecting()"
+                      [class.error]="hasError()">
+                </span>
+                <span class="status-text">
+                    @if (isConnected()) {
+                        Conectado
+                    } @else if (isConnecting()) {
+                        Conectando...
+                    } @else if (hasError()) {
+                        Error de conexión
+                    } @else {
+                        Desconectado
+                    }
+                </span>
+            </div>
+        </header>
+
+        <div class="websocket-controls">
+            <div class="control-group">
+                <input #messageInput 
+                       type="text" 
+                       placeholder="Escribe un mensaje..."
+                       (keyup.enter)="sendMessage(messageInput.value); messageInput.value = ''"
+                       [disabled]="!isConnected()">
+                <button (click)="sendMessage(messageInput.value); messageInput.value = ''"
+                        [disabled]="!isConnected()">
+                    Enviar
+                </button>
+            </div>
+            
+            <div class="control-group">
+                <input #roomInput 
+                       type="text" 
+                       placeholder="Nombre de la sala..."
+                       [disabled]="!isConnected()">
+                <button (click)="joinRoom(roomInput.value)"
+                        [disabled]="!isConnected()">
+                    Unirse a Sala
+                </button>
+            </div>
+
+            <div class="control-buttons">
+                <button (click)="reconnect()" 
+                        [disabled]="isConnecting()">
+                    Reconectar
+                </button>
+                <button (click)="clearMessages()">
+                    Limpiar
+                </button>
+            </div>
+        </div>
+
+        <div class="messages-section">
+            @if (dataStream.isLoading()) {
+                <p class="loading">Inicializando conexión...</p>
+            } @else if (dataStream.error()) {
+                <p class="error">Error: {{ dataStream.error() }}</p>
+            } @else {
+                <div class="messages-header">
+                    <h4>Mensajes recibidos ({{ messageCount() }})</h4>
+                </div>
+                
+                @if (dataStream.value(); as messages) {
+                    <div class="messages-container">
+                        @for (message of messages; track message.id) {
+                            <div class="message-item">
+                                <div class="message-header">
+                                    <span class="message-id">#{{ message.id }}</span>
+                                    <span class="message-time">{{ message.timestamp | date:'HH:mm:ss' }}</span>
+                                    @if (message.clientId) {
+                                        <span class="client-id">{{ message.clientId }}</span>
+                                    }
+                                </div>
+                                <div class="message-content">{{ message.content }}</div>
+                            </div>
+                        } @empty {
+                            <p class="no-messages">No hay mensajes aún...</p>
+                        }
+                    </div>
+                } @else {
+                    <p class="no-messages">Esperando mensajes...</p>
+                }
+            }
+        </div>
+    </div>
+</ng-content>
