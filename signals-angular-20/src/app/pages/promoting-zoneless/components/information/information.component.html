@@ -1,0 +1,167 @@
+<div class="information-container">
+  <header class="header">
+    <h1 class="main-title">Guía: Migración a Angular Zoneless</h1>
+    <p class="subtitle">Implementación de detección de cambios sin Zone.js en Angular</p>
+  </header>
+
+  <main class="content">
+    <!-- Sección 1: Eliminar Zone.js -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="step-number">1.</span>
+        Eliminar Zone.js de Angular
+      </h2>
+      
+      <div class="subsection">
+        <h3 class="subsection-title">1.1. Actualización de polyfills.ts</h3>
+        <p class="description">Eliminar o comentar la importación de zone.js:</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="file-path">src/polyfills.ts</span>
+            <span class="language-tag">TypeScript</span>
+          </div>
+          <pre class="code-content"><code>// import 'zone.js';  // Included with Angular CLI.</code></pre>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">1.2. Eliminar dependencia en package.json</h3>
+        <p class="description">Remover zone.js de las dependencias:</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="file-path">package.json</span>
+            <span class="language-tag">JSON</span>
+          </div>
+          <pre class="code-content"><code>&#123;"dependencies": &#123;"zone.js": "^0.0.0"  // ❌ Eliminar esta línea&#125;&#125;</code></pre>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">1.3. Desinstalar la biblioteca</h3>
+        <p class="description">Ejecutar el siguiente comando en la terminal:</p>
+        <div class="code-block terminal">
+          <div class="code-header">
+            <span class="file-path">Terminal</span>
+            <span class="language-tag">Bash</span>
+          </div>
+          <pre class="code-content"><code>npm uninstall zone.js</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 2: Configuración -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="step-number">2.</span>
+        Configuración de la aplicación sin Zone.js
+      </h2>
+      
+      <div class="subsection">
+        <h3 class="subsection-title">2.1. Configuración en main.ts</h3>
+        <p class="description">Agregar el proveedor de detección de cambios experimental:</p>
+        <div class="code-block">
+          <div class="code-header">
+            <span class="file-path">src/main.ts</span>
+            <span class="language-tag">TypeScript</span>
+          </div>
+          <pre class="code-content"><code>import &#123; bootstrapApplication &#125; from '&#64;angular/platform-browser';
+import &#123; provideExperimentalZonelessChangeDetection &#125; from '&#64;angular/core';
+import &#123; AppComponent &#125; from './app/app.component';
+
+bootstrapApplication(AppComponent, &#123;
+  providers: [
+    provideExperimentalZonelessChangeDetection(), // ✅ Habilitar detección zoneless
+  ],
+&#125;).catch(err => console.error(err));</code></pre>
+        </div>
+        <div class="warning-box">
+          <strong>⚠️ Importante:</strong> Esta funcionalidad está marcada como experimental y puede cambiar en futuras versiones de Angular.
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 3: Detección manual -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="step-number">3.</span>
+        Activación manual de la detección de cambios
+      </h2>
+      
+      <div class="subsection">
+        <h3 class="subsection-title">3.1. Usar ChangeDetectorRef</h3>
+        <p class="description">
+          <strong>ChangeDetectorRef</strong> es una clase que permite controlar la detección de cambios en Angular. 
+          Se puede inyectar en el constructor del componente y utilizar sus métodos para activar o desactivar la detección de cambios.
+        </p>
+        <div class="info-box">
+          <h4>Métodos principales:</h4>
+          <ul>
+            <li><code>detectChanges()</code> - Ejecuta la detección de cambios inmediatamente</li>
+            <li><code>markForCheck()</code> - Marca el componente para verificación en el próximo ciclo</li>
+            <li><code>detach()</code> - Desconecta el componente de la detección automática</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">3.2. Usar ApplicationRef</h3>
+        <p class="description">
+          <strong>ApplicationRef</strong> es una clase que permite interactuar con el ciclo de vida de la aplicación Angular 
+          y activar la detección de cambios a nivel global.
+        </p>
+        <div class="info-box">
+          <h4>Método principal:</h4>
+          <ul>
+            <li><code>tick()</code> - Ejecuta un ciclo completo de detección de cambios en toda la aplicación</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 4: Signals -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="step-number">4.</span>
+        Optimización con Signals
+      </h2>
+      <p class="description">
+        Los <strong>Signals</strong> proporcionan una forma reactiva y eficiente de manejar el estado en aplicaciones Angular sin Zone.js. 
+        Permiten una detección de cambios más granular y optimizada.
+      </p>
+      <div class="info-box">
+        <h4>Ventajas de usar Signals:</h4>
+        <ul>
+          <li>🚀 Mejor rendimiento</li>
+          <li>🎯 Detección de cambios más precisa</li>
+          <li>📦 Menor bundle size</li>
+          <li>🔄 Reactividad automática</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Sección 5: Streams múltiples -->
+    <section class="section">
+      <h2 class="section-title">
+        <span class="step-number">5.</span>
+        Ejemplo de componente con múltiples Streams
+      </h2>
+      <p class="description">
+        Implementación de un componente que maneja múltiples flujos de datos reactivos utilizando RxJS y Signals 
+        en un entorno sin Zone.js.
+      </p>
+      <div class="coming-soon">
+        <span class="icon">🚧</span>
+        <span>Ejemplo de implementación próximamente...</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-text">
+      📚 Para más información, consulta la 
+      <a href="https://angular.dev/guide/experimental/zoneless" target="_blank" class="link">
+        documentación oficial de Angular Zoneless
+      </a>
+    </p>
+  </footer>
+</div>
