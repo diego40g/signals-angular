@@ -1,1 +1,81 @@
-<h2 align="center">promoting-zoneless works!</h2>
+<div class="zoneless-container">
+  <header class="main-header">
+    <h1 class="page-title">Angular Zoneless Change Detection</h1>
+    <p class="page-subtitle">Explorando diferentes enfoques para la detección de cambios sin Zone.js</p>
+  </header>
+
+  <nav class="navigation-menu">
+    <ul class="menu-list">
+      @for (item of menuItems; track item.id) {
+        <li 
+          class="menu-item"
+          [class.active]="isActive(item.id)"
+        >
+          <button 
+            class="menu-button"
+            (click)="setActiveTab(item.id)"
+            [class.active]="isActive(item.id)"
+          >
+            <span class="menu-icon">{{ item.icon }}</span>
+            <span class="menu-label">{{ item.label }}</span>
+          </button>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <main class="content-area">
+    <div class="component-container">
+      <!-- Información General -->
+      @if (isActive('information')) {
+        <div class="component-wrapper active">
+          <app-information></app-information>
+        </div>
+      }
+
+      <!-- ChangeDetectorRef -->
+      @if (isActive('change-detector-ref')) {
+        <div class="component-wrapper active">
+          <div class="component-header">
+            <h2>ChangeDetectorRef</h2>
+            <p>Ejemplo de detección de cambios manual usando ChangeDetectorRef</p>
+          </div>
+          <app-change-detector-def></app-change-detector-def>
+        </div>
+      }
+
+      <!-- ApplicationRef -->
+      @if (isActive('application-ref')) {
+        <div class="component-wrapper active">
+          <div class="component-header">
+            <h2>ApplicationRef</h2>
+            <p>Ejemplo de detección de cambios a nivel de aplicación usando ApplicationRef</p>
+          </div>
+          <app-application-ref></app-application-ref>
+        </div>
+      }
+
+      <!-- Signal Optimization -->
+      @if (isActive('signal-optimization')) {
+        <div class="component-wrapper active">
+          <div class="component-header">
+            <h2>Optimización con Signals</h2>
+            <p>Ejemplo de detección de cambios reactiva usando Angular Signals</p>
+          </div>
+          <app-signal-optimization></app-signal-optimization>
+        </div>
+      }
+
+      <!-- Multi Stream -->
+      @if (isActive('multi-stream')) {
+        <div class="component-wrapper active">
+          <div class="component-header">
+            <h2>Múltiples Streams</h2>
+            <p>Ejemplo de manejo de múltiples flujos de datos con RxJS</p>
+          </div>
+          <app-multi-stream></app-multi-stream>
+        </div>
+      }
+    </div>
+  </main>
+</div>
