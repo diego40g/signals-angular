@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { UsersState } from '../models/users-state';
-import { User } from '../models/user';
+import { User } from '@models/user';
 import { delay } from 'rxjs';
 
 @Injectable({
