@@ -31,6 +31,11 @@ export const routes: Routes = [
         pathMatch: 'full'
     },
     {
+        path: 'hydrate-on-viewport',
+        loadComponent: () => import('./pages/solidifying-angular-server/components/hydrate-on-viewport/hydrate-on-viewport.component')
+            .then(c => c.HydrateOnViewportComponent)
+    },
+    {
         path: '**',
         redirectTo: 'new-experimental-apis'
     }
