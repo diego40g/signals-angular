@@ -1,0 +1,52 @@
+<h1>Solidificando Angular en el Servidor (Angular 20)</h1>
+
+<h2>Hidratación incremental</h2>
+<p>
+  La hidratación incremental permite que tu aplicación descargue e hidrate solo partes de la página bajo demanda, haciendo que la experiencia sea más rápida y eficiente.
+</p>
+<pre><code>import &#123; provideClientHydration, withIncrementalHydration &#125; from '&#64;angular/platform-browser';
+
+bootstrapApplication(AppComponent, &#123;
+  providers: [
+    provideClientHydration(withIncrementalHydration()),
+    // ...otros providers
+  ]
+&#125;);
+</code></pre>
+
+<h3>Uso de vistas diferibles</h3>
+<p>
+  Puedes usar la directiva <code>&#64;defer</code> en tus templates para cargar componentes solo cuando sean necesarios:
+</p>
+<pre><code>&#64;defer (hydrate on viewport) &#123;
+  &lt;shopping-cart/&gt;
+&#125;
+</code></pre>
+
+<h2>Configuración de modo de renderizado a nivel de ruta</h2>
+<p>
+  Ahora puedes definir cómo se renderiza cada ruta de tu aplicación (SSR, CSR, SSG) usando la configuración de rutas del servidor:
+</p>
+<pre><code>import &#123; ServerRoute, RenderMode &#125; from '&#64;angular/platform-server';
+import &#123; inject &#125; from '&#64;angular/core';
+import &#123; ProductService &#125; from './services/product.service';
+
+export const routeConfig: ServerRoute = [
+  &#123; path: '/login', mode: RenderMode.Server &#125;,
+  &#123; path: '/dashboard', mode: RenderMode.Client &#125;,
+  &#123;
+    path: '/product/:id',
+    mode: RenderMode.Prerender,
+    async getPrerenderParams() &#123;
+      const dataService = inject(ProductService);
+      const ids = await dataService.getIds(); // ["1", "2", "3"]
+      return ids.map(id =&gt; (&#123; id &#125;));
+    &#125;
+  &#125;
+];
+</code></pre>
+
+<h2>Despliegue</h2>
+<p>
+  Puedes desplegar tus aplicaciones renderizadas en servidor en la mayoría de los proveedores de la nube. Angular trabaja de forma integrada con Firebase App Hosting para soportar SSR, SSG y CSR, brindando seguridad y escalabilidad.
+</p>
