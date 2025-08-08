@@ -1,0 +1,111 @@
+.solidifying-container
+  max-width: 900px
+  margin: 0 auto
+  padding: 24px
+
+.main-header
+  text-align: center
+  margin-bottom: 36px
+
+  .page-title
+    font-size: 2.2rem
+    font-weight: 700
+    margin: 0 0 10px 0
+    background: linear-gradient(135deg, #00bcd4, #1976d2)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+    background-clip: text
+
+  .page-subtitle
+    color: #555
+    font-size: 1.1rem
+    margin: 0
+    font-weight: 400
+
+.navigation-menu
+  margin-bottom: 28px
+
+  .menu-list
+    list-style: none
+    padding: 0
+    margin: 0
+    display: flex
+    gap: 16px
+    justify-content: center
+
+.menu-item
+  .menu-button
+    background: white
+    border: 2px solid #e1e5e9
+    border-radius: 8px
+    padding: 14px 22px
+    cursor: pointer
+    transition: all 0.3s
+    display: flex
+    align-items: center
+    gap: 10px
+    font-size: 1rem
+
+    &:hover
+      border-color: #00bcd4
+      box-shadow: 0 2px 8px rgba(0, 188, 212, 0.12)
+      background-color: #f0fafd
+
+    &.active
+      border-color: #1976d2
+      background-color: #e3f2fd
+      font-weight: 600
+
+  .menu-icon
+    font-size: 1.3rem
+
+  .menu-label
+    font-size: 1rem
+
+.content-area
+  .component-container
+    .component-wrapper
+      background: white
+      border-radius: 8px
+      padding: 24px
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08)
+      border: 1px solid #e1e5e9
+      opacity: 0
+      transform: translateY(20px)
+      transition: all 0.4s
+
+      &.active
+        opacity: 1
+        transform: translateY(0)
+        animation: fadeInUp 0.5s
+
+@keyframes fadeInUp
+  from
+    opacity: 0
+    transform: translateY(30px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+@media (max-width: 700px)
+  .solidifying-container
+    padding: 12px
+
+  .main-header
+    margin-bottom: 24px
+
+    .page-title
+      font-size: 1.5rem
+
+    .page-subtitle
+      font-size: 0.95rem
+
+  .navigation-menu
+    .menu-list
+      flex-direction: column
+      gap: 10px
+
+  .menu-item
+    .menu-button
+      width: 100%
+      justify-content: flex-start

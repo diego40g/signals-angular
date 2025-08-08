@@ -1,1 +1,37 @@
-<h2 align="center">solidifying-angular-server works!</h2>
+<div class="solidifying-container">
+  <header class="main-header">
+    <h1 class="page-title">Solidificando Angular en el Servidor</h1>
+    <p class="page-subtitle">Explora las novedades de Angular 20: Hidratación incremental y configuración de rutas SSR/CSR/SSG</p>
+  </header>
+
+  <nav class="navigation-menu">
+    <ul class="menu-list">
+      @for (item of menuItems; track item.id) {
+        <li class="menu-item" [class.active]="isActiveTab(item.id)">
+          <button 
+            class="menu-button"
+            (click)="setActiveTab(item.id)"
+            [class.active]="isActiveTab(item.id)">
+            <span class="menu-icon">{{ item.icon }}</span>
+            <span class="menu-label">{{ item.label }}</span>
+          </button>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <main class="content-area">
+    <div class="component-container">
+      @if (isActiveTab('information')) {
+        <div class="component-wrapper active">
+          <app-information></app-information>
+        </div>
+      }
+      @if (isActiveTab('hydrate-on-viewport')) {
+        <div class="component-wrapper active">
+          <app-hydrate-on-viewport></app-hydrate-on-viewport>
+        </div>
+      }
+    </div>
+  </main>
+</div>
