@@ -1,0 +1,19 @@
+<h2>Hydrate on Viewport Demo: defer</h2>
+<p>El bloque siguiente se hidrata solo cuando entra en el viewport:</p>
+<section class="my-4">
+  @if(productsService.products.isLoading()) {
+    <app-loading-indicator />
+  } @else if (productsService.products.error()) {
+    <div class="alert alert-error">
+      <p>Error loading products: {{ productsService.products.error() }}</p>
+    </div>
+  } @defer  (when productsService.products.hasValue(); hydrate on viewport;) {
+  <app-shopping-cart [products]="productsService.products.value() || []" />
+  } @placeholder {
+  <div>Placeholder...</div>
+  } @loading {
+  <app-loading-indicator />
+  } @error {
+  <p class="alert alert-error">Failed to load products component.</p>
+  }
+</section>
