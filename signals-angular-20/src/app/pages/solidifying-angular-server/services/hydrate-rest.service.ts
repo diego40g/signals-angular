@@ -7,6 +7,6 @@ import { Product } from '../model/product';
 })
 export class HydrateRestService {
   products = httpResource<Product[]>(
-    () => '/data/products.json'
+    () => 'http://localhost:3000/hydrate-rest/products'
   )
 }
