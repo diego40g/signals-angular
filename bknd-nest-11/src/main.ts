@@ -11,6 +11,9 @@ if (process.env.NODE_ENV !== 'production') {
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Enable cors
+  app.enableCors();
+
   // Configuración de Swagger
   const config = new DocumentBuilder()
   .setTitle('API Documentation')
