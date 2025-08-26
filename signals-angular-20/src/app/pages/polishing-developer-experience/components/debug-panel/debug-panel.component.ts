@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { PerfomanceTrackerService } from '@app/pages/polishing-developer-experience/services/perfomance-tracker.service';
+import { PerformanceTrackerService } from '@app/pages/polishing-developer-experience/services/performance-tracker.service';
 import { ListItem } from '../../models/list-item';
 import { FormData } from '../../models/form-data';
 import { FormsModule } from '@angular/forms';
@@ -30,10 +30,10 @@ export class DebugPanelComponent implements OnInit, OnDestroy {
     { id: 9, name: 'Elemento nueve' },
     { id: 10, name: 'Elemento diez' }
   ];
-  
+
   private componentStartTime = performance.now();
 
-  constructor(private tracker: PerfomanceTrackerService) {}
+  constructor(private tracker: PerformanceTrackerService) {}
 
   ngOnInit(): void {
     const initTime = performance.now() - this.componentStartTime;
@@ -51,7 +51,7 @@ export class DebugPanelComponent implements OnInit, OnDestroy {
   }
 
   onButtonClick() {
-    this.tracker.trackEvent('Button Click', { 
+    this.tracker.trackEvent('Button Click', {
       action: 'user-interaction',
       button: 'primary-track-button',
       timestamp: new Date().toISOString()
@@ -141,7 +141,7 @@ export class DebugPanelComponent implements OnInit, OnDestroy {
     const previousCount = this.tracker.getMetrics().length;
     this.tracker.clearMetrics();
     console.log(`Cleared ${previousCount} metrics from tracker`);
-    
+
     // Trackear la acción de limpiar (este será el primer evento después del clear)
     this.tracker.trackEvent('Clear All Metrics', {
       action: 'debug-interaction',
@@ -157,7 +157,7 @@ export class DebugPanelComponent implements OnInit, OnDestroy {
       console.log(`${index + 1}. ${metric.name}:`, metric);
     });
     console.log('=====================================');
-    
+
     this.tracker.trackEvent('Export Metrics', {
       action: 'debug-interaction',
       exportedCount: metrics.length,
