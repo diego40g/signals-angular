@@ -1,0 +1,22 @@
+<div class="dynamic-component">
+  <h2>Creador de Componentes Dinámicos</h2>
+  
+  <div class="controls">
+    <button (click)="createDynamicComponent()">Crear Componente Dinámico</button>
+    <button (click)="toggleCanClose()">
+      Toggle CanClose ({{ canClose() ? 'true' : 'false' }})
+    </button>
+    <button (click)="updateTitle()">Actualizar Título</button>
+    <button (click)="clearAllComponents()">Limpiar Todos</button>
+  </div>
+
+  <div class="current-values">
+    <p><strong>Título actual:</strong> {{ title() }}</p>
+    <p><strong>Puede cerrar:</strong> {{ canClose() }}</p>
+    <p><strong>Componentes creados:</strong> {{ dynamicComponents.length }}</p>
+  </div>
+
+  <div class="dynamic-components-container">
+    <!-- Los componentes dinámicos se insertarán aquí -->
+  </div>
+</div>
