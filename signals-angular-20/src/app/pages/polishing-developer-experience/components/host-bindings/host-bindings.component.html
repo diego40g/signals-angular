@@ -1,0 +1,30 @@
+<div class="host-bindings-demo">
+  <h3
+    [style.color]="getTextColor()"
+    [style.fontSize]="getFontSize()"
+    [style.opacity]="getOpacity()"
+    [attr.aria-label]="getAriaLabel()"
+  >
+    Enlaces de Host Mejorados
+  </h3>
+  <p [style.backgroundColor]="getBackgroundColor()">Estado actual: {{ statusMessage() }}</p>
+  <p [class.active]="isActive()" [class.disabled]="isDisabled()">Clases aplicadas: {{ appliedClasses() }}</p>
+  <p><strong>Último evento:</strong> {{ eventMessage() }}</p>
+
+  <div class="controls">
+    <input type="text">
+    <button (click)="toggleActive()">Toggle Active</button>
+    <button (click)="toggleDisabled()">Toggle Disabled</button>
+    <button (click)="changeTheme()">Cambiar Tema</button>
+  </div>
+
+  <div class="info">
+    <h4>Verificación de tipos habilitada:</h4>
+    <ul>
+      <li>✅ Autocompletado en enlaces de host</li>
+      <li>✅ Detección de errores de tipos</li>
+      <li>✅ Refactoring seguro</li>
+      <li>✅ Mejor experiencia de desarrollo</li>
+    </ul>
+  </div>
+</div>
