@@ -1,0 +1,96 @@
+<!-- example.component.html -->
+<div class="example-container">
+  <h2>Custom Tracker Example Component</h2>
+  
+  <!-- Botón para trackear eventos -->
+  <div class="button-section">
+    <button 
+      class="track-button" 
+      (click)="onButtonClick()"
+      type="button">
+      Click para Trackear Evento
+    </button>
+    
+    <button 
+      class="track-button secondary" 
+      (click)="onSpecialAction()"
+      type="button">
+      Acción Especial
+    </button>
+  </div>
+
+  <!-- Formulario para trackear interacciones -->
+  <div class="form-section">
+    <h3>Formulario de Prueba</h3>
+    <form (ngSubmit)="onFormSubmit()" #testForm="ngForm">
+      <div class="form-group">
+        <label for="userName">Nombre:</label>
+        <input 
+          type="text" 
+          id="userName"
+          name="userName"
+          [(ngModel)]="formData.userName"
+          (focus)="onInputFocus('userName')"
+          (blur)="onInputBlur('userName')"
+          class="form-control">
+      </div>
+      
+      <div class="form-group">
+        <label for="userEmail">Email:</label>
+        <input 
+          type="email" 
+          id="userEmail"
+          name="userEmail"
+          [(ngModel)]="formData.userEmail"
+          (focus)="onInputFocus('userEmail')"
+          (blur)="onInputBlur('userEmail')"
+          class="form-control">
+      </div>
+      
+      <button type="submit" class="submit-button">
+        Enviar Formulario
+      </button>
+    </form>
+  </div>
+
+  <!-- Lista para trackear scroll y clicks -->
+  <div class="list-section">
+    <h3>Lista Trackeable</h3>
+    <ul class="trackeable-list" (scroll)="onListScroll($event)">
+      @for (item of listItems; track item.id; let i = $index) {
+        <li 
+          (click)="onListItemClick(item, i)"
+          class="list-item">
+          Item {{i + 1}}: {{item.name}}
+        </li>
+      }
+    </ul>
+  </div>
+
+  <!-- Sección de métricas en tiempo real -->
+  @if (showMetrics) {
+    <div class="metrics-section">
+      <h3>Métricas en Tiempo Real</h3>
+      <button (click)="toggleMetrics()" class="toggle-button">
+        {{showMetrics ? 'Ocultar' : 'Mostrar'}} Métricas
+      </button>
+      <div class="metrics-display">
+        <p>Total de eventos: {{getTotalEvents()}}</p>
+        <p>Último evento: {{getLastEvent()?.name || 'Ninguno'}}</p>
+      </div>
+    </div>
+  }
+
+  <!-- Botones de control del tracker -->
+  <div class="control-section">
+    <button (click)="viewAllMetrics()" class="control-button">
+      Ver Todas las Métricas
+    </button>
+    <button (click)="clearAllMetrics()" class="control-button danger">
+      Limpiar Métricas
+    </button>
+    <button (click)="exportMetrics()" class="control-button">
+      Exportar a Consola
+    </button>
+  </div>
+</div>
