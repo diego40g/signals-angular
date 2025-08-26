@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class PerfomanceTrackerService {
+export class PerformanceTrackerService {
   private metrics: any[] = [];
 
   trackEvent(name: string, data?: any) {
@@ -20,12 +20,12 @@ export class PerfomanceTrackerService {
 
     (window as any).customTracker = this.metrics;
   }
-  
+
   getMetrics() {
     return this.metrics;
   }
 
   clearMetrics() {
-    this.metrics
+    this.metrics = [];
   }
 }
