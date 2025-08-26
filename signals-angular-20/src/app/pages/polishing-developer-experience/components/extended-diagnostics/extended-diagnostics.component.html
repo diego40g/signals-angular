@@ -151,14 +151,14 @@
           <div class="control-group">
             <label>String vacío (NO se reemplaza):</label>
             <div class="value-display">
-              '{{ emptyString() ?? 'Este default NO se mostrará' }}'
+              '{{ emptyString() || 'Este default NO se mostrará' }}'
             </div>
           </div>
 
           <div class="control-group">
             <label>String válido:</label>
             <div class="value-display">
-              {{ validString() ?? 'Default' }}
+              {{ validString() || 'Default' }}
             </div>
           </div>
         </div>

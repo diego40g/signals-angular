@@ -23,7 +23,7 @@
                             <span class="icon">{{ option.icon }}</span>
                             <span class="label">{{ option.label }}</span>
                         </div>
-                        <span class="badge" [attr.data-type]="(option.badge ?? '').toLowerCase()">
+                        <span class="badge" [attr.data-type]="(option.badge || '').toLowerCase()">
                             {{ option.badge }}
                         </span>
                     </div>
