@@ -1,0 +1,29 @@
+<div class="exponential-demo">
+    <h2>Operador Exponencial &#40;**&#41;</h2>
+    
+    <div class="input-section">
+        <label>
+            Número base: 
+            <input 
+                type="number" 
+                [value]="baseNumber()" 
+                (input)="setBaseNumber($event)"
+            >
+        </label>
+        
+        <label>
+            Exponente: 
+            <input 
+                type="number" 
+                [value]="exponent()" 
+                (input)="setExponent($event)"
+            >
+        </label>
+    </div>
+
+    <div class="results">
+        <p>{{ baseNumber() }} elevado a {{ exponent() }} = {{ baseNumber() ** exponent() }}</p>
+        <p>Cuadrado de {{ baseNumber() }}: {{ baseNumber() ** 2 }}</p>
+        <p>Cubo de {{ baseNumber() }}: {{ baseNumber() ** 3 }}</p>
+    </div>
+</div>
