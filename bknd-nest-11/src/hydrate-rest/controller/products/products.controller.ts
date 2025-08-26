@@ -40,7 +40,7 @@ export class ProductsController {
 
     @Patch(':id')
     @ApiOperation({ summary: 'Update a product by ID' })
-    @ApiParam({ name: 'id', required: true, description: 'The product update succcessfully' })
+    @ApiParam({ name: 'id', required: true, description: 'The product update successfully' })
     @ApiResponse({ status: 200, description: 'Product updated successfully' })
     update(
         @Param('id') id: string,

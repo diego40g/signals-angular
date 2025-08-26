@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PerfomanceTrackerService } from '../../polishing-developer-experience/services/perfomance-tracker.service';
+import { PerformanceTrackerService } from '../../polishing-developer-experience/services/performance-tracker.service';
 
 describe('PerfomanceTrackerService', () => {
-  let service: PerfomanceTrackerService;
+  let service: PerformanceTrackerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PerfomanceTrackerService);
+    service = TestBed.inject(PerformanceTrackerService);
   });
 
   it('should be created', () => {
