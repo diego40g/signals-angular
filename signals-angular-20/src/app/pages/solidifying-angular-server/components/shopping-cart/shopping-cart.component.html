@@ -1,0 +1,33 @@
+<ul class="product-grid">
+  @for (product of products(); track product.id) {
+    <li class="product-item">
+      <div class="card">
+        <figure>
+          <img
+            src="data:image/png;base64,{{ product.image }}"
+            class="product-image"
+            loading="lazy"
+            alt="{{ product.name }}"
+          />
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">{{product.name}}</h2>
+          <p class="product-description">{{product.description}}</p>
+          <p class="product-price">Price: ${{product.price.toFixed(2)}}</p>
+          <div class="category-badge">
+            <span>Category: {{product.category}}</span>
+          </div>
+          <div class="card-actions">
+            <button class="add-to-cart-btn" (click)="addToCart(product)">
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </li>
+  } @empty {
+    <div class="alert-info">
+      <p>No products available.</p>
+    </div>
+  }
+</ul>

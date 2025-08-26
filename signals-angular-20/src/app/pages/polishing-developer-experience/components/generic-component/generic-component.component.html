@@ -1,0 +1,10 @@
+<div class="generic-component">
+  <h3>{{ title() }}</h3>
+  <p>generic-component works!</p>
+  
+  <input type="text" [value]="title()" (input)="onInput($event)" />
+
+  @if (canClose()) {
+    <button (click)="closeComponent()">Close Component</button>
+  }
+</div>

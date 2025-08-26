@@ -1,0 +1,46 @@
+<div class="in-operator-demo">
+    <h2>Operador 'in'</h2>
+    
+    <div class="person-info">
+    <h3>Información de la Persona</h3>
+    <pre>{{ JSON.stringify(person(), null, 2) }}</pre>
+    </div>
+
+    <div class="property-checks">
+    <h3>Verificación de Propiedades</h3>
+    <ul>
+        <li>
+        ¿Tiene nombre? 
+        <span [class.exists]="'name' in person()">
+            {{ 'name' in person() ? '✅ Sí' : '❌ No' }}
+        </span>
+        </li>
+        <li>
+        ¿Tiene edad? 
+        <span [class.exists]="'age' in person()">
+            {{ 'age' in person() ? '✅ Sí' : '❌ No' }}
+        </span>
+        </li>
+        <li>
+        ¿Tiene email? 
+        <span [class.exists]="'email' in person()">
+            {{ 'email' in person() ? '✅ Sí' : '❌ No' }}
+        </span>
+        </li>
+        <li>
+        ¿Tiene teléfono? 
+        <span [class.exists]="'phone' in person()">
+            {{ 'phone' in person() ? '✅ Sí' : '❌ No' }}
+        </span>
+        </li>
+    </ul>
+    </div>
+
+    <div class="controls">
+    <button (click)="addProperty('name', 'Juan Pérez')">Agregar Nombre</button>
+    <button (click)="addProperty('age', 30)">Agregar Edad</button>
+    <button (click)="addProperty('email', 'juan@example.com')">Agregar Email</button>
+    <button (click)="removeProperty('name')">Quitar Nombre</button>
+    <button (click)="clearPerson()">Limpiar Todo</button>
+    </div>
+</div>

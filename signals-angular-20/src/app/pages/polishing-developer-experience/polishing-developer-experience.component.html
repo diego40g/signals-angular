@@ -1,1 +1,79 @@
-<h2 align="center">polishing-developer-experience works!</h2>
+<div class="polishing-developer-container">
+    <header class="main-header">
+        <h1 align="center" class="page-title">🚀 Polishing Developer Experience</h1>
+        <p class="page-subtitle">Mejorando la experiencia de desarrollo con Angular 20</p>
+    </header>
+
+    <!-- Menú de navegación lateral -->
+    <div class="layout-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3>Ejemplos Disponibles</h3>
+                <p class="sidebar-subtitle">{{ menuOptions.length }} componentes</p>
+            </div>
+
+            <nav class="component-menu">
+                @for (option of menuOptions; track option.key) {
+                    <button
+                    class="menu-item"
+                    [class.active]="activeComponent() === option.key"
+                    (click)="selectComponent(option.key)">
+                    <div class="menu-item-content">
+                        <div class="menu-item-header">
+                            <span class="icon">{{ option.icon }}</span>
+                            <span class="label">{{ option.label }}</span>
+                        </div>
+                        <span class="badge" [attr.data-type]="(option.badge || '').toLowerCase()">
+                            {{ option.badge }}
+                        </span>
+                    </div>
+                    </button>
+                }
+            </nav>
+        </aside>
+
+        <!-- Contenido principal -->
+        <main class="main-content">
+            <!-- Header del componente activo -->
+            <div class="component-header">
+                <div class="component-title-section">
+                    <span class="component-icon">{{ activeComponentInfo()?.icon }}</span>
+                    <div class="component-title-text">
+                        <h2 class="component-title">{{ activeComponentInfo()?.label }}</h2>
+                        <p class="component-description">{{ activeComponentInfo()?.description }}</p>
+                    </div>
+                </div>
+                <span class="component-badge" [attr.data-type]="(activeComponentInfo()?.badge ?? '').toLowerCase()">
+                    {{ activeComponentInfo()?.badge }}
+                </span>
+            </div>
+
+            <!-- Contenedor del componente activo -->
+            <div class="component-container">
+                @switch (activeComponent()) {
+                  @case ('debug-panel') {
+                      <app-debug-panel></app-debug-panel>
+                  }
+                  @case ('dynamic-component') {
+                      <app-dynamic-component></app-dynamic-component>
+                  }
+                  @case ('exponential-operator') {
+                      <app-exponential-operator></app-exponential-operator>
+                  }
+                  @case ('in-operator') {
+                      <app-in-operator></app-in-operator>
+                  }
+                  @case ('template-literals') {
+                      <app-template-literals></app-template-literals>
+                  }
+                  @case ('extended-diagnostics') {
+                      <app-extended-diagnostics></app-extended-diagnostics>
+                  }
+                  @case ('host-bindings') {
+                      <app-host-bindings></app-host-bindings>
+                  }
+                }
+            </div>
+        </main>
+    </div>
+</div>

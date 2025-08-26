@@ -1,0 +1,57 @@
+<div class="template-literals-demo">
+    <h2>Template Literals en Expresiones</h2>
+    
+    <div class="layout-controls">
+        <label>
+            Ancho de columna:
+            <select [value]="colWidth()" (change)="setColWidth($event)">
+                <option value="sm">Pequeña</option>
+                <option value="md">Mediana</option>
+                <option value="lg">Grande</option>
+                <option value="xl">Extra Grande</option>
+            </select>
+        </label>
+        
+        <label>
+            Tema:
+            <select [value]="theme()" (change)="setTheme($event)">
+                <option value="light">Claro</option>
+                <option value="dark">Oscuro</option>
+                <option value="blue">Azul</option>
+            </select>
+        </label>
+    </div>
+
+    <!-- Usando template literals para clases dinámicas -->
+    <div [class]="`layout col-${colWidth()}`">
+        <h3>Layout con columna {{ colWidth() }}</h3>
+        <p>Esta div usa template literals para generar clases CSS dinámicas</p>
+        <p>Clase aplicada: <code>layout col-{{ colWidth() }}</code></p>
+    </div>
+
+    <!-- Más ejemplos con template literals -->
+    <div [class]="`container ${theme()}-theme padding-${colWidth()}`">
+        <h3>Tema {{ theme() }}</h3>
+        <p>Este contenedor combina múltiples valores usando template literals</p>
+        <p>Clases: <code>container {{ theme() }}-theme padding-{{ colWidth() }}</code></p>
+    </div>
+
+    <!-- Template literals para atributos -->
+    <div 
+        [id]="`section-${theme()}-${colWidth()}`"
+        [title]="`Sección con tema ${theme()} y columna ${colWidth()}`"
+        class="dynamic-section"
+    >
+        <h4>Sección Dinámica</h4>
+        <p>ID: <code>section-{{ theme() }}-{{ colWidth() }}</code></p>
+        <p>Inspecciona este elemento para ver el título dinámico</p>
+    </div>
+
+    <!-- Template literals en interpolaciones -->
+    <div class="interpolation-examples">
+        <h3>Ejemplos de Interpolación</h3>
+        <p>URL dinámica: {{ `https://api.example.com/users/${theme()}/${colWidth()}` }}</p>
+        <p>Mensaje: {{ `Configuración actual: ${theme()} theme con columnas ${colWidth()}` }}</p>
+        <p>Timestamp: {{ `Generated at ${getCurrentTime()}` }}</p>
+    </div>
+</div>

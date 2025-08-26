@@ -1,0 +1,239 @@
+/* example.component.css */
+.example-container 
+  max-width: 800px
+  margin: 0 auto
+  padding: 20px
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+
+
+.example-container h2 
+  color: #333
+  text-align: center
+  margin-bottom: 30px
+  border-bottom: 2px solid #007bff
+  padding-bottom: 10px
+
+
+.example-container h3 
+  color: #555
+  margin-top: 30px
+  margin-bottom: 15px
+
+
+/* Sección de botones */
+.button-section 
+  text-align: center
+  margin-bottom: 30px
+
+
+.track-button 
+  background-color: #007bff
+  color: white
+  border: none
+  padding: 12px 24px
+  margin: 0 10px
+  border-radius: 5px
+  cursor: pointer
+  font-size: 14px
+  transition: all 0.3s ease
+
+
+.track-button:hover 
+  background-color: #0056b3
+  transform: translateY(-2px)
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3)
+
+
+.track-button.secondary 
+  background-color: #28a745
+
+
+.track-button.secondary:hover 
+  background-color: #1e7e34
+
+
+/* Sección del formulario */
+.form-section 
+  background-color: #f8f9fa
+  padding: 20px
+  border-radius: 8px
+  margin-bottom: 30px
+  border-left: 4px solid #007bff
+
+
+.form-group 
+  margin-bottom: 15px
+
+
+.form-group label 
+  display: block
+  margin-bottom: 5px
+  font-weight: 600
+  color: #555
+
+
+.form-control 
+  width: 100%
+  padding: 10px
+  border: 2px solid #ddd
+  border-radius: 4px
+  font-size: 14px
+  transition: border-color 0.3s ease
+  box-sizing: border-box
+
+
+.form-control:focus 
+  outline: none
+  border-color: #007bff
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3)
+
+
+.submit-button 
+  background-color: #28a745
+  color: white
+  border: none
+  padding: 12px 24px
+  border-radius: 5px
+  cursor: pointer
+  font-size: 14px
+  transition: background-color 0.3s ease
+
+
+.submit-button:hover 
+  background-color: #1e7e34
+
+
+/* Sección de lista */
+.list-section 
+  margin-bottom: 30px
+
+
+.trackeable-list 
+  max-height: 200px
+  overflow-y: auto
+  border: 2px solid #ddd
+  border-radius: 5px
+  padding: 0
+  margin: 0
+  list-style: none
+  background-color: white
+
+
+.list-item 
+  padding: 12px 15px
+  border-bottom: 1px solid #eee
+  cursor: pointer
+  transition: background-color 0.2s ease
+
+
+.list-item:hover 
+  background-color: #f1f3f4
+
+
+.list-item:active 
+  background-color: #e3f2fd
+
+
+.list-item:last-child 
+  border-bottom: none
+
+
+/* Sección de métricas */
+.metrics-section 
+  background-color: #fff3cd
+  padding: 20px
+  border-radius: 8px
+  margin-bottom: 30px
+  border-left: 4px solid #ffc107
+
+
+.toggle-button 
+  background-color: #ffc107
+  color: #212529
+  border: none
+  padding: 8px 16px
+  border-radius: 4px
+  cursor: pointer
+  font-size: 12px
+  margin-bottom: 15px
+
+
+.toggle-button:hover 
+  background-color: #e0a800
+
+
+.metrics-display p 
+  margin: 8px 0
+  font-weight: 500
+  color: #856404
+
+
+/* Sección de controles */
+.control-section 
+  text-align: center
+  padding-top: 20px
+  border-top: 2px solid #dee2e6
+
+
+.control-button 
+  background-color: #6c757d
+  color: white
+  border: none
+  padding: 10px 20px
+  margin: 0 8px 10px 8px
+  border-radius: 4px
+  cursor: pointer
+  font-size: 13px
+  transition: all 0.3s ease
+
+
+.control-button:hover 
+  background-color: #545b62
+  transform: translateY(-1px)
+
+
+.control-button.danger 
+  background-color: #dc3545
+
+
+.control-button.danger:hover 
+  background-color: #c82333
+
+
+/* Responsive */
+@media (max-width: 768px) 
+  .example-container 
+    padding: 15px
+  
+  
+  .track-button 
+    display: block
+    margin: 10px auto
+    width: 100%
+    max-width: 250px
+  
+  
+  .control-button 
+    display: block
+    margin: 10px auto
+    width: 100%
+    max-width: 200px
+  
+  .form-control 
+    font-size: 16px
+  
+
+
+/* Animaciones */
+@keyframes fadeIn 
+  from 
+    opacity: 0
+    transform: translateY(20px)
+  to 
+    opacity: 1
+    transform: translateY(0)
+
+.metrics-section,
+.form-section,
+.list-section 
+  animation: fadeIn 0.5s ease
