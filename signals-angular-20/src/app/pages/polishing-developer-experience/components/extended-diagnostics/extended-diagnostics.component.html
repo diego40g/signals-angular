@@ -1,0 +1,230 @@
+<div class="extended-diagnostics-container">
+  <div class="intro-section">
+    <h2>🔍 Extended Diagnostics en Angular 20</h2>
+    <p class="intro-text">
+      Angular 20 introduce diagnósticos estáticos mejorados que detectan errores comunes como:
+    </p>
+    <ul class="features-list">
+      <li>❌ Nullish coalescing inválido</li>
+      <li>📦 Imports faltantes para directivas estructurales</li>
+      <li>⚠️ Funciones track no invocadas en &#64;for loops</li>
+    </ul>
+  </div>
+
+  <!-- Sección: Track Function Diagnostics -->
+  <section class="diagnostics-section">
+    <div class="section-header">
+      <h3>🎯 Track Function Diagnostics</h3>
+      <p>Angular 20 detecta cuando no invocas la función track en &#64;for loops</p>
+    </div>
+
+    <div class="examples-grid">
+      <!-- Ejemplos Correctos -->
+      <div class="example-card correct">
+        <div class="example-header">
+          <h4>✅ Implementación Correcta</h4>
+          <button class="toggle-btn" (click)="toggleCorrectExamples()">
+            {{ showCorrectExamples() ? 'Ocultar' : 'Mostrar' }}
+          </button>
+        </div>
+
+        @if (showCorrectExamples()) {
+          <div class="example-content">
+            <div class="code-snippet">
+              <h5>Código Template:</h5>
+              <pre><code>
+&#64;for (user of users(); track trackUserById(i, user)) &#123;
+  &lt;div class="user-item"&gt; &#123; &#123; user.name &#125; &#125;&lt;/div&gt;
+&#125;
+              </code></pre>
+            </div>
+
+            <div class="demo-area">
+              <div class="controls">
+                <button class="btn btn-primary" (click)="addUser()">➕ Agregar Usuario</button>
+              </div>
+
+              <div class="items-grid">
+                @for (user of users(); track trackUserById($index, user); let i = $index) {
+                  <div class="item-card user-card" [class.inactive]="!user.isActive">
+                    <div class="item-header">
+                      <span class="item-title">{{ user.name }}</span>
+                      <span class="item-badge" [class.active]="user.isActive">
+                        {{ user.isActive ? 'Activo' : 'Inactivo' }}
+                      </span>
+                    </div>
+                    <div class="item-details">
+                      <p><strong>Email:</strong> {{ user.email }}</p>
+                      <p><strong>Edad:</strong> {{ user.age }} años</p>
+                      <p><strong>Index:</strong> {{ i }}</p>
+                    </div>
+                    <div class="item-actions">
+                      <button class="btn btn-sm" (click)="toggleUserStatus(user.id)">
+                        {{ user.isActive ? 'Desactivar' : 'Activar' }}
+                      </button>
+                      <button class="btn btn-sm btn-danger" (click)="removeUser(user.id)">
+                        🗑️
+                      </button>
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Ejemplos Incorrectos (comentados para evitar errores de compilación) -->
+      <div class="example-card incorrect">
+        <div class="example-header">
+          <h4>❌ Implementación Incorrecta</h4>
+          <button class="toggle-btn" (click)="toggleIncorrectExamples()">
+            {{ showIncorrectExamples() ? 'Ocultar' : 'Mostrar' }}
+          </button>
+        </div>
+
+        @if (showIncorrectExamples()) {
+          <div class="example-content">
+            <div class="code-snippet error">
+              <h5>❌ Código que Angular 20 detecta como error:</h5>
+              <pre><code>
+// ❌ INCORRECTO: No se invoca la función
+&#64;for (user of users(); track trackFn) &#123;
+  &lt;div&gt; &#123; &#123; user.name &#125; &#125; &lt;/div&gt;
+&#125;
+              </code></pre>
+              <p class="error-message">
+                ⚠️ <strong>Diagnóstico de Angular 20:</strong><br>
+                "Track expression 'trackFn' should be invoked. Did you mean 'trackFn()'?"
+              </p>
+            </div>
+
+            <div class="code-snippet correct">
+              <h5>✅ CORRECTO:</h5>
+              <pre><code>
+// ✅ CORRECTO: Se invoca la función correctamente
+&#64;for (user of users(); track trackUserById($index, user)) &#123;
+  &lt;div&gt; &#123; &#123; user.name &#125; &#125; &lt;/div&gt;
+&#125;
+              </code></pre>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Nullish Coalescing Diagnostics -->
+  <section class="diagnostics-section">
+    <div class="section-header">
+      <h3>🛡️ Nullish Coalescing Diagnostics</h3>
+      <p>Detección de uso inválido del operador nullish coalescing (??)</p>
+    </div>
+
+    <div class="nullish-examples">
+      <div class="nullish-demo">
+        <h4>Ejemplos de Nullish Coalescing</h4>
+
+        <div class="demo-controls">
+          <div class="control-group">
+            <label>Valor null:</label>
+            <div class="value-display">
+              {{ nullValue() ?? 'Valor por defecto para null' }}
+            </div>
+            <div class="button-group">
+              <button class="btn btn-sm" (click)="setNullValue()">Set null</button>
+              <button class="btn btn-sm" (click)="setValidValue()">Set valor</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label>Valor undefined:</label>
+            <div class="value-display">
+              {{ undefinedValue() ?? 'Valor por defecto para undefined' }}
+            </div>
+            <div class="button-group">
+              <button class="btn btn-sm" (click)="setUndefinedValue()">Set undefined</button>
+              <button class="btn btn-sm" (click)="setDefinedValue()">Set valor</button>
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label>String vacío (NO se reemplaza):</label>
+            <div class="value-display">
+              '{{ emptyString() ?? 'Este default NO se mostrará' }}'
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label>String válido:</label>
+            <div class="value-display">
+              {{ validString() ?? 'Default' }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Productos con diferentes track strategies -->
+  <section class="diagnostics-section">
+    <div class="section-header">
+      <h3>📦 Diferentes Estrategias de Tracking</h3>
+      <p>Comparación de diferentes métodos de tracking para optimización</p>
+    </div>
+
+    <div class="products-demo">
+      <div class="controls">
+        <button class="btn btn-primary" (click)="addProduct()">➕ Agregar Producto</button>
+      </div>
+
+      <div class="products-grid">
+        @for (product of products(); track trackProductById($index, product)) {
+          <div class="product-card" [class.out-of-stock]="!product.inStock">
+            <div class="product-header">
+              <h4>{{ product.name }}</h4>
+              <span class="product-id">ID: {{ product.id }}</span>
+            </div>
+            <div class="product-details">
+              <p><strong>Precio:</strong> ${{ product.price }}</p>
+              <p><strong>Categoría:</strong> {{ product.category }}</p>
+              <p><strong>Stock:</strong>
+                <span [class]="product.inStock ? 'in-stock' : 'out-of-stock'">
+                  {{ product.inStock ? 'Disponible' : 'Agotado' }}
+                </span>
+              </p>
+            </div>
+            <div class="product-actions">
+              <button class="btn btn-sm" (click)="toggleProductStock(product.id)">
+                {{ product.inStock ? '📦 Marcar Agotado' : '✅ Marcar Disponible' }}
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Información adicional -->
+  <section class="info-section">
+    <h3>💡 Beneficios de Extended Diagnostics</h3>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <h4>🚀 Mejor Rendimiento</h4>
+        <p>Track functions correctas optimizan el cambio de detección</p>
+      </div>
+      <div class="benefit-card">
+        <h4>🐛 Menos Errores</h4>
+        <p>Detección temprana de errores comunes en tiempo de compilación</p>
+      </div>
+      <div class="benefit-card">
+        <h4>📚 Mejor DX</h4>
+        <p>Mensajes de error más claros y sugerencias útiles</p>
+      </div>
+      <div class="benefit-card">
+        <h4>🔧 Mantenibilidad</h4>
+        <p>Código más robusto y fácil de mantener</p>
+      </div>
+    </div>
+  </section>
+</div>
