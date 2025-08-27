@@ -1,0 +1,56 @@
+<div class="comparison-section">
+  <h2>NgFor vs &#64;for - Renderizado de Listas</h2>
+
+  <div class="comparison-grid">
+    <!-- Sintaxis Antigua - NgFor -->
+    <div class="old-syntax">
+      <h3>❌ Sintaxis Antigua (NgFor) - DEPRECADO</h3>
+      <div class="code-example">
+        <pre><code>
+&lt;ul&gt;
+  &lt;li *ngFor="let user of users;
+              let i = index;
+              trackBy: trackByUserId"&gt;
+    &#123; &#123; i + 1 &#125; &#125;. &#123; &#123; user.name &#125; &#125; &#40; &#123; &#123; user.age &#125; &#125; años &#41;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+      </div>
+
+      <div class="result">
+        <ul class="user-list">
+          <li *ngFor="let user of users; let i = index" class="user-item">
+            {{ i + 1 }}. {{ user.name }} ({{ user.age }} años)
+            <span class="role-badge old">{{ user.role }}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sintaxis Nueva - @for -->
+    <div class="new-syntax">
+      <h3>✅ Sintaxis Nueva (&#64;for) - RECOMENDADO</h3>
+      <div class="code-example">
+        <pre><code>&lt;ul&gt;
+  &#64;for (user of users; track user.id) &#123;
+    &lt;li&gt; &#123; &#123; $index + 1 &#125; &#125;. &#123; &#123; user.name &#125; &#125; &#40; &#123; &#123; user.age &#125; &#125; años &#41;&lt;/li&gt;
+  &#125; &#64;empty &#123;
+    &lt;li&gt;No hay usuarios disponibles&lt;/li&gt;
+  &#125;
+&lt;/ul&gt;</code></pre>
+      </div>
+
+      <div class="result">
+        <ul class="user-list">
+          @for (user of users; track user.id) {
+            <li class="user-item">
+              {{ $index + 1 }}. {{ user.name }} ({{ user.age }} años)
+              <span class="role-badge new">{{ user.role }}</span>
+            </li>
+          } @empty {
+            <li class="empty-state">No hay usuarios disponibles</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

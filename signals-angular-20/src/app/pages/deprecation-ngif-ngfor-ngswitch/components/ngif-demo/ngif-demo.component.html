@@ -1,0 +1,61 @@
+<div class="comparison-section">
+  <h2>NgIf vs &#64;if - Renderizado Condicional</h2>
+
+  <div class="controls">
+    <button (click)="toggleContent()">
+      {{ showContent ? 'Ocultar' : 'Mostrar' }} Contenido
+    </button>
+  </div>
+
+  <div class="comparison-grid">
+    <!-- Sintaxis Antigua - NgIf -->
+    <div class="old-syntax">
+      <h3>❌ Sintaxis Antigua (NgIf) - DEPRECADO</h3>
+      <div class="code-example">
+        <pre><code>
+&lt;div *ngIf="showContent"&gt;
+  &lt;p&gt;Contenido mostrado con *ngIf&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div *ngIf="!showContent; else noContent"&gt;
+  &lt;p&gt;Contenido visible&lt;/p&gt;
+&lt;/div&gt;
+&lt;ng-template #noContent&gt;
+  &lt;p&gt;Contenido oculto&lt;/p&gt;
+&lt;/ng-template&gt;
+        </code></pre>
+      </div>
+
+      <div class="result">
+        <div *ngIf="showContent; else hiddenContent">
+          <p>✅ Contenido mostrado con *ngIf</p>
+        </div>
+        <ng-template #hiddenContent>
+          <p>❌ Contenido oculto con *ngIf</p>
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Sintaxis Nueva - @if -->
+    <div class="new-syntax">
+      <h3>✅ Sintaxis Nueva (&#64;if) - RECOMENDADO</h3>
+      <div class="code-example">
+        <pre><code>
+&#64;if (showContent) &#123;
+  &lt;p&gt;Contenido mostrado con &#64;if&lt;/p&gt;
+&#125; &#64;else &#123;
+  &lt;p&gt;Contenido oculto con &#64;if&lt;/p&gt;
+&#125;
+        </code></pre>
+      </div>
+
+      <div class="result">
+        @if (showContent) {
+          <p>✅ Contenido mostrado con &#64;if</p>
+        } @else {
+          <p>❌ Contenido oculto con &#64;if</p>
+        }
+      </div>
+    </div>
+  </div>
+</div>

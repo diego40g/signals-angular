@@ -1,0 +1,50 @@
+# Angular Signals Project - LLM Context
+
+## Project Overview
+This is a modern Angular 18+ project demonstrating signals and reactive programming patterns.
+
+## Key Technologies
+- Angular 18+ with standalone components
+- Angular Signals for reactive state management
+- Control flow syntax (@if, @for, @switch)
+- Modern Angular APIs
+
+## Code Patterns
+Use standalone components instead of NgModules:
+```typescript
+@Component({
+  standalone: true,
+  imports: [CommonModule],
+  selector: 'app-example',
+  template: `...`
+})
+```
+
+Use modern control flow instead of structural directives:
+```html
+<!-- Use this -->
+@if (condition) {
+  <div>Content</div>
+}
+
+@for (item of items; track item.id) {
+  <div>{{ item.name }}</div>
+}
+
+<!-- Instead of *ngIf and *ngFor -->
+```
+
+Use signals for reactive state:
+```typescript
+import { signal, computed } from '@angular/core';
+
+export class MyComponent {
+  count = signal(0);
+  doubleCount = computed(() => this.count() * 2);
+}
+```
+
+## Documentation
+- Angular Signals: https://angular.dev/guide/signals
+- Control Flow: https://angular.dev/guide/templates/control-flow
+- Standalone Components: https://angular.dev/guide/components/importing

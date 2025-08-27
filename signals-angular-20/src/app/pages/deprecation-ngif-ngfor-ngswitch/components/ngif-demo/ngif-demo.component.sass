@@ -1,0 +1,81 @@
+/* Sections */
+.comparison-section
+  margin-bottom: 40px
+
+.comparison-grid
+  display: grid
+  grid-template-columns: 1fr 1fr
+  gap: 30px
+  margin-top: 20px
+
+.old-syntax, .new-syntax
+  border-radius: 10px
+  padding: 20px
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+
+.old-syntax
+  background: #fff5f5
+  border-left: 4px solid #f56565
+
+.new-syntax
+  background: #f0fff4
+  border-left: 4px solid #48bb78
+
+.old-syntax h3
+  color: #e53e3e
+  margin-top: 0
+
+.new-syntax h3
+  color: #38a169
+  margin-top: 0
+
+/* Code examples */
+.code-example
+  background: #f8f9fa
+  border-radius: 6px
+  margin: 15px 0
+  overflow-x: auto
+
+.code-example pre
+  margin: 0
+  padding: 15px
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace
+  font-size: 0.9em
+  line-height: 1.4
+
+.code-example code
+  color: #333
+
+/* Results */
+.result
+  background: white
+  border: 1px solid #e0e0e0
+  border-radius: 6px
+  padding: 15px
+  margin-top: 10px
+
+/* Controls */
+.controls
+  background: #f8f9fa
+  padding: 15px
+  border-radius: 8px
+  margin: 20px 0
+
+.controls button
+  background: #2196f3
+  color: white
+  border: none
+  padding: 10px 20px
+  border-radius: 6px
+  cursor: pointer
+  font-size: 1em
+  transition: background 0.3s ease
+
+.controls button:hover
+  background: #1976d2
+
+/* Responsive design */
+@media (max-width: 768px)
+  .comparison-grid
+    grid-template-columns: 1fr
+    gap: 20px

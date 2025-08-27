@@ -1,0 +1,118 @@
+<div class="comparison-section">
+  <h2>NgSwitch vs &#64;switch - Renderizado Condicional Multiple</h2>
+
+  <div class="controls">
+    <label>Cambiar rol de usuario:</label>
+    <select (change)="changeUserRole($any($event.target).value)" [value]="currentUserRole">
+      <option value="admin">Administrador</option>
+      <option value="user">Usuario</option>
+      <option value="guest">Invitado</option>
+    </select>
+  </div>
+
+  <div class="comparison-grid">
+    <!-- Sintaxis Antigua - NgSwitch -->
+    <div class="old-syntax">
+      <h3>❌ Sintaxis Antigua (NgSwitch) - DEPRECADO</h3>
+      <div class="code-example">
+        <pre><code>
+&lt;div [ngSwitch]="currentUserRole"&gt;
+  &lt;div *ngSwitchCase="'admin'"&gt;
+    &lt;h4&gt;Panel de Administrador&lt;/h4&gt;
+    &lt;p&gt;Acceso completo al sistema&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div *ngSwitchCase="'user'"&gt;
+    &lt;h4&gt;Panel de Usuario&lt;/h4&gt;
+    &lt;p&gt;Acceso limitado&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div *ngSwitchDefault&gt;
+    &lt;h4&gt;Panel de Invitado&lt;/h4&gt;
+    &lt;p&gt;Acceso de solo lectura&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <div class="result">
+        <div class="role-panel old" [ngSwitch]="currentUserRole">
+          <div *ngSwitchCase="'admin'">
+            <h4>🔧 Panel de Administrador</h4>
+            <p>Acceso completo al sistema</p>
+            <ul>
+              <li>Gestionar usuarios</li>
+              <li>Configuración del sistema</li>
+              <li>Reportes avanzados</li>
+            </ul>
+          </div>
+          <div *ngSwitchCase="'user'">
+            <h4>👤 Panel de Usuario</h4>
+            <p>Acceso limitado al sistema</p>
+            <ul>
+              <li>Ver perfil personal</li>
+              <li>Reportes básicos</li>
+            </ul>
+          </div>
+          <div *ngSwitchDefault>
+            <h4>👥 Panel de Invitado</h4>
+            <p>Acceso de solo lectura</p>
+            <ul>
+              <li>Ver contenido público</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sintaxis Nueva - @switch -->
+    <div class="new-syntax">
+      <h3>✅ Sintaxis Nueva (&#64;switch) - RECOMENDADO</h3>
+      <div class="code-example">
+        <pre><code>
+&#64;switch (currentUserRole) &#123;
+  &#64;case ('admin') &#123;
+    &lt;h4&gt;Panel de Administrador&lt;/h4&gt;
+    &lt;p&gt;Acceso completo al sistema&lt;/p&gt;
+  &#125;
+  &#64;case ('user') &#123;
+    &lt;h4&gt;Panel de Usuario&lt;/h4&gt;
+    &lt;p&gt;Acceso limitado&lt;/p&gt;
+  &#125;
+  &#64;default &#123;
+    &lt;h4&gt;Panel de Invitado&lt;/h4&gt;
+    &lt;p&gt;Acceso de solo lectura&lt;/p&gt;
+  &#125;
+&#125;</code></pre>
+      </div>
+
+      <div class="result">
+        <div class="role-panel new">
+          @switch (currentUserRole) {
+            @case ('admin') {
+              <h4>🔧 Panel de Administrador</h4>
+              <p>Acceso completo al sistema</p>
+              <ul>
+                <li>Gestionar usuarios</li>
+                <li>Configuración del sistema</li>
+                <li>Reportes avanzados</li>
+              </ul>
+            }
+            @case ('user') {
+              <h4>👤 Panel de Usuario</h4>
+              <p>Acceso limitado al sistema</p>
+              <ul>
+                <li>Ver perfil personal</li>
+                <li>Reportes básicos</li>
+              </ul>
+            }
+            @default {
+              <h4>👥 Panel de Invitado</h4>
+              <p>Acceso de solo lectura</p>
+              <ul>
+                <li>Ver contenido público</li>
+              </ul>
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
