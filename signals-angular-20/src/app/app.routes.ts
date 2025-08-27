@@ -36,6 +36,11 @@ export const routes: Routes = [
             .then(c => c.HydrateOnViewportComponent)
     },
     {
+        path: 'ai-example',
+        loadComponent: () => import('./pages/ai-example/ai-example.component')
+            .then(c => c.AiExampleComponent)
+    },
+    {
         path: '**',
         redirectTo: 'new-experimental-apis'
     }
