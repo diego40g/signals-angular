@@ -1,0 +1,101 @@
+<div class="assistant-container">
+  <header class="assistant-header">
+    <h1>Asistente de Angular 20</h1>
+    <p class="subtitle">Consulta sobre las nuevas características y mejoras de Angular 20</p>
+    <button (click)="clearChat()" class="clear-button" [disabled]="service.isLoading()">
+      🗑️ Limpiar Chat
+    </button>
+  </header>
+
+  <div class="chat-container">
+    <!-- Mensajes del chat -->
+    <div class="messages" #messagesContainer>
+      @if (service.chat().length === 0) {
+        <div class="welcome-message">
+          <h2>👋 ¡Bienvenido!</h2>
+          <p>Puedes preguntarme sobre cualquier característica de Angular 20:</p>
+          <ul class="suggestions">
+            <li (click)="selectSuggestion('¿Cómo funcionan los signals?')">¿Cómo funcionan los signals?</li>
+            <li (click)="selectSuggestion('¿Qué es el modo zoneless?')">¿Qué es el modo zoneless?</li>
+            <li (click)="selectSuggestion('Explícame el nuevo flujo de control (@if, @for, @switch)')">Explícame el nuevo flujo de control (&#64;if, &#64;for, &#64;switch)</li>
+            <li (click)="selectSuggestion('¿Cómo funciona la hidratación incremental?')">¿Cómo funciona la hidratación incremental?</li>
+            <li (click)="selectSuggestion('¿Qué es resource API?')">¿Qué es resource API?</li>
+          </ul>
+        </div>
+      } @else {
+        @for (message of service.chat(); track message.id) {
+          <div class="message" [class.user]="message.role === 'USER'" [class.assistant]="message.role === 'ASSISTANT'">
+            <div class="message-content">
+              <div class="message-header">
+                <span class="role">{{ message.role === 'USER' ? '👤 Tú' : '🤖 Asistente' }}</span>
+                <span class="time">{{ formatTime(message.timestamp) }}</span>
+              </div>
+              <div class="message-text" [innerHTML]="formatMessage(message.text)"></div>
+            </div>
+          </div>
+        }
+
+        <!-- Indicador de carga -->
+        @if (service.isLoading()) {
+          <div class="message assistant">
+            <div class="message-content">
+              <div class="message-header">
+                <span class="role">🤖 Asistente</span>
+                <span class="time">Escribiendo...</span>
+              </div>
+              <div class="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        }
+      }
+
+      <!-- Ejemplos adicionales -->
+      @if (showExamples().length > 0) {
+        <div class="examples-section">
+          <h4>💡 Temas relacionados:</h4>
+          <div class="examples">
+            @for (example of showExamples(); track example) {
+              <button class="example-button" (click)="selectSuggestion(example)">
+                {{ example }}
+              </button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Error message -->
+    @if (service.errorMessage()) {
+      <div class="error-message">
+        <span class="error-icon">⚠️</span>
+        {{ service.errorMessage() }}
+        <button (click)="service.retry()" class="retry-button">🔄 Reintentar</button>
+      </div>
+    }
+
+    <!-- Input area -->
+    <div class="input-area">
+      <textarea
+        [(ngModel)]="currentInput"
+        placeholder="Pregunta sobre Angular 20... (Shift + Enter para nueva línea)"
+        [disabled]="service.isLoading()"
+        (keydown)="handleKeyDown($event)"
+        rows="3"
+        maxlength="2000"></textarea>
+      <button
+        (click)="sendMessage()"
+        [disabled]="!currentInput.trim() || service.isLoading()"
+        class="send-button">
+        @if (service.isLoading()) {
+          <span class="loading-spinner">⏳</span> Enviando...
+        } @else {
+          📤 Enviar
+        }
+      </button>
+    </div>
+  </div>
+</div>
