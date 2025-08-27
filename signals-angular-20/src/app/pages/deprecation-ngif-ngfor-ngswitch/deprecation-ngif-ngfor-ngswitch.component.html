@@ -1,1 +1,78 @@
-<h2 align="center">deprecation-ngif-ngfor-ngswitch works!</h2>
+<div class="container">
+  <h1>Desuso de NgIf, NgFor y NgSwitch</h1>
+  <p class="intro">
+    Comparación entre las directivas estructurales tradicionales y el nuevo flujo de control integrado de Angular v17+
+  </p>
+
+  <!-- Navegación de tabs -->
+  <div class="tabs">
+    <button
+      class="tab-button"
+      [class.active]="selectedTab === 'ngif'"
+      (click)="changeTab('ngif')">
+      NgIf vs &#64;if
+    </button>
+    <button
+      class="tab-button"
+      [class.active]="selectedTab === 'ngfor'"
+      (click)="changeTab('ngfor')">
+      NgFor vs &#64;for
+    </button>
+    <button
+      class="tab-button"
+      [class.active]="selectedTab === 'ngswitch'"
+      (click)="changeTab('ngswitch')">
+      NgSwitch vs &#64;switch
+    </button>
+  </div>
+
+  <!-- Contenido de los componentes -->
+  @if (selectedTab === 'ngif') {
+    <app-ngif-demo></app-ngif-demo>
+  }
+
+  @if (selectedTab === 'ngfor') {
+    <app-ngfor-demo></app-ngfor-demo>
+  }
+
+  @if (selectedTab === 'ngswitch') {
+    <app-ngswitch-demo></app-ngswitch-demo>
+  }
+
+  <!-- Sección de beneficios -->
+  <div class="benefits-section">
+    <h2>🚀 Beneficios del Nuevo Flujo de Control</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <h3>📝 Sintaxis más intuitiva</h3>
+        <p>Más cercana a JavaScript, más fácil de leer y escribir</p>
+      </div>
+      <div class="benefit-card">
+        <h3>🎯 Uso más sencillo</h3>
+        <p>Sin necesidad de importar módulos o directivas adicionales</p>
+      </div>
+      <div class="benefit-card">
+        <h3>⚡ Mejor rendimiento</h3>
+        <p>Algoritmo de diferenciación optimizado</p>
+      </div>
+      <div class="benefit-card">
+        <h3>🔍 Mejor tipado</h3>
+        <p>Comprobación de tipos mejorada y restricciones más estrictas</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de migración -->
+  <div class="migration-section">
+    <h2>🔄 Migración Automática</h2>
+    <p>Angular proporciona un esquema para migrar automáticamente:</p>
+    <div class="code-example">
+      <pre><code>ng generate &#64;angular/core:control-flow</code></pre>
+    </div>
+    <div class="warning">
+      <h3>⚠️ Importante</h3>
+      <p>Las directivas *ngIf, *ngFor y *ngSwitch serán eliminadas en Angular v22 (aproximadamente un año desde v17).</p>
+      <p>Se recomienda migrar al nuevo flujo de control lo antes posible.</p>
+    </div>
+  </div>
+</div>
