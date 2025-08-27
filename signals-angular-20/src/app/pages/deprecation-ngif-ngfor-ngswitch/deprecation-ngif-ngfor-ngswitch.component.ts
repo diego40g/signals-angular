@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { User } from './models/user';
 import { CommonModule } from '@angular/common';
 import { NgifDemoComponent } from './components/ngif-demo/ngif-demo.component';
 import { NgforDemoComponent } from './components/ngfor-demo/ngfor-demo.component';
