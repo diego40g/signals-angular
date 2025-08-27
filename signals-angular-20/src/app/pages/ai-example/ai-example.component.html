@@ -30,7 +30,7 @@
                 <span class="role">{{ message.role === 'USER' ? '👤 Tú' : '🤖 Asistente' }}</span>
                 <span class="time">{{ formatTime(message.timestamp) }}</span>
               </div>
-              <div class="message-text" [innerHTML]="formatMessage(message.text)"></div>
+              <div class="message-text">{{ formatMessage(message.text) }}</div>
             </div>
           </div>
         }
