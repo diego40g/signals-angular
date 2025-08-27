@@ -22,10 +22,7 @@ export class GenkitService {
   private isFirstRequest = signal(true);
 
   // ID de sesión para mantener el contexto con GenKit
-  sessionId = linkedSignal<string>((): string => {
-    this.userInput(); // Para que se reactive cuando cambie userInput
-    return Date.now() + '' + Math.floor(Math.random() * 1000000000);
-  });
+  sessionId = signal<string>(Date.now() + '' + Math.floor(Math.random() * 1000000000));
 
   // Limpiar sesión solo en la solicitud inicial
   clearSession = linkedSignal<boolean>((): boolean => this.isFirstRequest());
