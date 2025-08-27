@@ -2,13 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { catchError, finalize, map, Observable, of } from 'rxjs';
 import { OpenAIResponse } from '../models/open-airesponse';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class GenAIService {
   private readonly apiUrl = 'https://api.openai.com/v1/chat/completions';
-  private readonly apiKey = 'your-api-key-here'; // En producción usar environment variables
+  private readonly apiKey = environment.openAIApiKey;
 
   // Signals para estado reactivo
   isLoading = signal(false);
