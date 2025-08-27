@@ -1,11 +1,3 @@
-https://www.youtube.com/watch?v=X3mXJ5GJybY
-
-https://angular.dev/roadmap
-
-https://blog.angular.dev/announcing-angular-v20-b5c9c06cf301
-
-https://www.youtube.com/watch?v=KaVufhifOmA&list=PLD4CDC34D7sMfVxx037MsX3_IbZ_0mFwA
-https://github.com/prophet-99/angular-elementary
 # SignalsAngular20
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.2.
@@ -65,3 +57,31 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## GenAI Development Guidelines
+
+This project follows modern Angular practices optimized for GenAI development:
+
+### Key Patterns
+- **Standalone Components**: No NgModules, use `standalone: true`
+- **Modern Control Flow**: Use `@if`, `@for`, `@switch` instead of structural directives
+- **Angular Signals**: Reactive state management with `signal()`, `computed()`, `effect()`
+
+### LLM Context
+- See `public/llms.txt` for comprehensive LLM guidance
+- Example component: [`ai-example.component.ts`](../src/app/pages/ai-example/ai-example.component.ts)
+- Follow patterns in [`ai-guidelines.ts`](../src/app/pages/ai-example/core/ai-guidelines.ts)
+
+### Best Practices for AI-Assisted Development
+1. Always use standalone components
+2. Prefer signals over traditional reactive forms
+3. Use modern template syntax
+4. Implement proper TypeScript typing
+5. Follow Angular's style guide
+
+## Reference
+https://blog.angular.dev/announcing-angular-v20-b5c9c06cf301
+https://www.youtube.com/watch?v=X3mXJ5GJybY
+https://angular.dev/roadmap
+https://www.youtube.com/watch?v=KaVufhifOmA&list=PLD4CDC34D7sMfVxx037MsX3_IbZ_0mFwA
+https://github.com/prophet-99/angular-elementary

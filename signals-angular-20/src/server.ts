@@ -6,11 +6,20 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
+import { expressHandler } from '@genkit-ai/express';
+import { angularAssistantFlow, codeExampleFlow, compareVersionsFlow } from '../src/app/pages/ai-example/GenkIA/flows';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
+app.use(express.json());
 const angularApp = new AngularNodeAppEngine();
+
+// Endpoints para GenKit
+app.post('/angularAssistantFlow', expressHandler(angularAssistantFlow));
+app.post('/codeExampleFlow', expressHandler(codeExampleFlow));
+app.post('/compareVersionsFlow', expressHandler(compareVersionsFlow));
+
 
 /**
  * Example Express Rest API endpoints can be defined here.
